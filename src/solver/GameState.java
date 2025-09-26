@@ -11,49 +11,59 @@ public class GameState {
      * 4. Char move. ex: up = u, down = d, left = l, right = r
      */
 
+    /*
+     * Algorithm Plans to use:
+     * 1. IDA*
+     */
+
     private Point playerPosition;
     private HashSet<Point> boxPosition;
     private HashSet<Point> goalPosition;
+    private GameState parent; // to backtrack the solution after knowing if its solvable
+    private int cost; // g(n)
     private char validMove;
 
-    public GameState(Point playerPosition, HashSet<Point> boxPosition, HashSet<Point> goalPosition, char validMove) {
+    public GameState(Point playerPosition, HashSet<Point> boxPosition, HashSet<Point> goalPosition, char validMove,
+            GameState parent) {
         this.playerPosition = playerPosition;
         this.boxPosition = boxPosition;
         this.goalPosition = goalPosition;
         this.validMove = validMove;
+        this.parent = parent;
+        this.cost = (parent == null) ? 0 : parent.cost + 1;
     }
 
     public Point getPlayer() {
-        return player;
+        return this.playerPosition;
     }
 
     public HashSet<Point> getBoxLocations() {
-        return boxLocations;
+        return this.boxPosition;
     }
 
-    public boolean isValidAction(char direction) {
+    // public boolean isValidAction(char direction) {
 
-    }
+    // }
 
-    public String validActions() {
+    // public String validActions() {
 
-        // Start out with 4 moves (up, down, left, right)
-        //
-        // Check if already explored based on coords
-        // (use hashmap to stored visited states)
-        //
-        // Check validity of action
-        //
-        // 1. Do I move into a wall? POP IF YES
-        // 2. Do I push a box? -> Is the box infront of a wall or another box? POP IF
-        // YES
-        // If NO to both questions -> VALID ACTION
+    // // Start out with 4 moves (up, down, left, right)
+    // //
+    // // Check if already explored based on coords
+    // // (use hashmap to stored visited states)
+    // //
+    // // Check validity of action
+    // //
+    // // 1. Do I move into a wall? POP IF YES
+    // // 2. Do I push a box? -> Is the box infront of a wall or another box? POP IF
+    // // YES
+    // // If NO to both questions -> VALID ACTION
 
-    }
+    // }
 
-    public boolean isGoalState() {
+    // public boolean isGoalState() {
 
-    }
+    // }
 
     public char getValidMode() {
         return validMove;
