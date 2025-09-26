@@ -33,12 +33,16 @@ public class GameState {
         this.cost = (parent == null) ? 0 : parent.cost + 1;
     }
 
-    public Point getPlayer() {
-        return this.playerPosition;
+    public Point getPlayerPosition() {
+        return playerPosition;
     }
 
     public HashSet<Point> getBoxLocations() {
         return this.boxPosition;
+    }
+
+    public char getValidMode() {
+        return validMove;
     }
 
     // public boolean isValidAction(char direction) {
@@ -64,14 +68,6 @@ public class GameState {
     // public boolean isGoalState() {
 
     // }
-
-    public char getValidMode() {
-        return validMove;
-    }
-
-    public Point getPlayerPosition() {
-        return playerPosition;
-    }
 
     @Override
     public int hashCode() {
